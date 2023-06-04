@@ -24,7 +24,7 @@ public class PlayerMoveState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            player.stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(player.idleState);
         }
     }
 }
