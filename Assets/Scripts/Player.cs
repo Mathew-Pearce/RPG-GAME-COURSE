@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
+    public PlayerPrimaryAttack primaryAttack { get; private set; }
  
     #endregion
 
@@ -63,6 +64,8 @@ public class Player : MonoBehaviour
         dashState = new PlayerDashState(this, stateMachine, "Dash");
 
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
+
+        primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
 
     private void Start()
@@ -78,6 +81,8 @@ public class Player : MonoBehaviour
         stateMachine.currentState.Update();
         CheckForDashInput();
     }
+
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinnishTrigger();
 
     private void CheckForDashInput()
     {
