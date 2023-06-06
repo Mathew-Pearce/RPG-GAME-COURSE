@@ -72,6 +72,7 @@ public class Player : Entity
 
     protected override void Update()
     {
+        base.Update();
         stateMachine.currentState.Update();
         CheckForDashInput();
     }
