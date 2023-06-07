@@ -9,13 +9,16 @@ public class Enemy : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
+    public float battleTime;
+ 
 
     [Header("Attack Info")]
     [SerializeField] public float attackDistance;
     public float attackCoolDown;
     [HideInInspector] public float timeSinceLastAttack;
+    public float chaseRange;
 
-public EnemyStateMachine stateMachine { get; private set; }
+    public EnemyStateMachine stateMachine { get; private set; }
 
 
     protected override void Awake()
