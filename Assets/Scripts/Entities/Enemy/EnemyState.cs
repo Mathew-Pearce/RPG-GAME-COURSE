@@ -9,6 +9,8 @@ public class EnemyState
 
     private string animBoolName;
 
+    protected Rigidbody2D rb;
+
     protected float stateTimer;
     protected bool triggerCalled;
 
@@ -26,11 +28,12 @@ public class EnemyState
     {
         triggerCalled = false;
         enemyBase.anim.SetBool(animBoolName, true);
+        rb = enemyBase.rb;
        
     }
-
     public virtual void Exit() 
     {
         enemyBase.anim.SetBool(animBoolName, false);
     }  
+    public virtual void AnimationFinnishTrigger() => triggerCalled = true;
 }

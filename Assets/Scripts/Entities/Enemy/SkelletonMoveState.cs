@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkelletonMoveState : EnemyState
+public class SkelletonMoveState : SkeletonGroundedState
 {
-
-    private EnemySkeleton enemy;
-    public SkelletonMoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemy) : base(_enemy, _stateMachine, _animBoolName)
+    public SkelletonMoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton enemy) : base(_enemyBase, _stateMachine, _animBoolName, enemy)
     {
-        enemy = _enemy;
     }
 
     public override void Enter()
@@ -24,12 +21,13 @@ public class SkelletonMoveState : EnemyState
     public override void Update()
     {
         base.Update();
-        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, enemy.rb.velocity.y);
+        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.velocity.y);
 
         if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
         {
-            enemy.Flip();
             stateMachine.ChangeState(enemy.idleState);
+            enemy.StartCoroutine("WaitToFlip");
         }
     }
+
 }

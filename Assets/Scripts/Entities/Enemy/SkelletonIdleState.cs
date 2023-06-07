@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkelletonIdleState : EnemyState
+public class SkelletonIdleState : SkeletonGroundedState
 {
-    EnemySkeleton enemy;
-
-    public SkelletonIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SkelletonIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton enemy) : base(_enemyBase, _stateMachine, _animBoolName, enemy)
     {
-        enemy = _enemy;
     }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocity(0, 0);
+        enemy.SetZeroVelocity();
         stateTimer = enemy.idleTime;
     }
 
